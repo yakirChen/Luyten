@@ -4,23 +4,9 @@ Luyten
 Java Decompiler Gui for Procyon  
 Apache License, Version 2.0
 
-[![Releases](https://img.shields.io/github/downloads/deathmarine/luyten/total.svg)](https://github.com/deathmarine/Luyten/releases)
-## Compilation
-*****
-
-We use maven to handle our dependencies.
-
-* Install [Maven 3](https://maven.apache.org/download.html)
-* Clone this repo and: `mvn clean install`
 
 ## Screenshot
-![Screen](https://i.imgur.com/phc59W6.png)
-
-### Downloads
-[Releases](https://github.com/deathmarine/Luyten/releases/latest)  
-
-### Bugs/Suggestions
-[Issues](https://github.com/deathmarine/Luyten/issues)  
+![Screen](./screen.png)
 
 
 ## Powered by 
