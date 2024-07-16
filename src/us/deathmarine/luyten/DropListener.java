@@ -65,7 +65,7 @@ public class DropListener implements DropTargetListener {
 								File file = new File(new URI(line));
 								list.add(file);
 							} catch (Exception ex) {
-								ex.printStackTrace();
+								ex.printStackTrace(System.err);
 							}
 						}
 						if (list.size() > 1) {
@@ -78,7 +78,7 @@ public class DropListener implements DropTargetListener {
 						event.getDropTargetContext().dropComplete(true);
 						handled = true;
 					} catch (Exception e) {
-						e.printStackTrace();
+						e.printStackTrace(System.err);
 					}
 					break;
 				}

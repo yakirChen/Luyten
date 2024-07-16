@@ -58,7 +58,7 @@ public class Luyten {
 			System.setProperty("com.apple.mrj.application.apple.menu.about.name", "Luyten");
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception e) {
-			e.printStackTrace();
+			e.printStackTrace(System.err);
 		}
 
 		// for TotalCommander External Viewer setting:
@@ -87,12 +87,9 @@ public class Luyten {
 	private static void launchMainInstance(final File fileFromCommandLine) throws IOException {
 		lockSocket = new ServerSocket(3456);
 		launchSession(fileFromCommandLine);
-		new Thread(new Runnable() {
-			@Override
-			public void run() {
+		new Thread(() -> {
 				launchServer();
-			}
-		}).start();
+			});
 	}
 
 	private static void launchSession(final File fileFromCommandLine) {
@@ -164,22 +161,20 @@ public class Luyten {
 				fileFromCommandLine = new File(realFileName);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			e.printStackTrace(System.err);
 		}
 		return fileFromCommandLine;
 	}
 
 	public static String getVersion() {
 		String result = "";
-		try {
+		try(BufferedReader br = new BufferedReader(new InputStreamReader(
+				ClassLoader.getSystemResourceAsStream("META-INF/maven/us.deathmarine/luyten/pom.properties")))) {
 			String line;
-			BufferedReader br = new BufferedReader(new InputStreamReader(
-					ClassLoader.getSystemResourceAsStream("META-INF/maven/us.deathmarine/luyten/pom.properties")));
 			while ((line = br.readLine()) != null) {
 				if (line.contains("version"))
 					result = line.split("=")[1];
 			}
-			br.close();
 		} catch (Exception e) {
 			return result;
 		}
@@ -190,22 +185,22 @@ public class Luyten {
 	/**
 	 * Method allows for users to copy the stacktrace for reporting any issues.
 	 * Add Cool Hyperlink Enhanced for mouse users.
-	 * 
+	 *
 	 * @param message
 	 * @param e
 	 */
 	public static void showExceptionDialog(String message, Exception e) {
-		StringWriter sw = new StringWriter();
-		PrintWriter pw = new PrintWriter(sw);
-		e.printStackTrace(pw);
-		String stacktrace = sw.toString();
-		try {
-			sw.close();
-			pw.close();
+
+		String stacktrace = null;
+		try(StringWriter sw = new StringWriter();
+			PrintWriter pw = new PrintWriter(sw)) {
+			e.printStackTrace(pw);
+			stacktrace = sw.toString();
+			System.out.println(stacktrace);
 		} catch (IOException e1) {
-			e1.printStackTrace();
+			e1.printStackTrace(System.err);
+			stacktrace = "获取异常信息错误";
 		}
-		System.out.println(stacktrace);
 
 		JPanel pane = new JPanel();
 		pane.setLayout(new BoxLayout(pane, BoxLayout.PAGE_AXIS));

@@ -116,9 +116,9 @@ public class FindAllBox extends JDialog {
 									entryName);
 							jfile.close();
 						} catch (IOException e) {
-							e.printStackTrace();
+							e.printStackTrace(System.err);
 						} catch (Exception e) {
-							e.printStackTrace();
+							e.printStackTrace(System.err);
 						}
 					}
 
