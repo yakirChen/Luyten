@@ -1,13 +1,7 @@
 export VERSION="0.7.0"
 export DIST_VERSION="1.7.0"
-#export JAVA_HOME=/Library/Java/JavaVirtualMachines/liberica-21.jdk
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-21.jdk/Contents/Home
-
-export PATH=${JAVA_HOME}/bin:$PATH
 
 java -version
-
-mvn clean package -Dmaven.test.skip=true -Paliyun
 
 if [ ! -x dict ]; then
   mkdir dist
@@ -15,7 +9,7 @@ fi
 
 cp target/luyten-${VERSION}.jar dist
 
-${JAVA_HOME}/bin/jpackage --verbose --input ./dist \
+jpackage --verbose --input ./dist \
   --name Luyten \
   --main-jar luyten-${VERSION}.jar \
   --main-class us.deathmarine.luyten.LuytenOsx \
