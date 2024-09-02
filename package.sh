@@ -1,5 +1,5 @@
-export VERSION="0.7.0"
-export DIST_VERSION="1.7.0"
+export VERSION="1.0.0"
+export DIST_VERSION="1.0.0"
 #export JAVA_HOME=/Library/Java/JavaVirtualMachines/liberica-21.jdk
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-21.jdk/Contents/Home
 

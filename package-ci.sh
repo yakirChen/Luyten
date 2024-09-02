@@ -1,5 +1,6 @@
-export VERSION="0.7.0"
-export DIST_VERSION="1.7.0"
+export VERSION=$1
+export V=$2
+export ARCH=$3
 
 java -version
 
@@ -11,14 +12,17 @@ cp target/luyten-${VERSION}.jar dist
 
 jpackage --verbose --input ./dist \
   --name Luyten \
+  --mac-package-name Luyten \
   --main-jar luyten-${VERSION}.jar \
   --main-class us.deathmarine.luyten.LuytenOsx \
   --type dmg \
-  --app-version ${DIST_VERSION} \
+  --app-version ${VERSION} \
   --icon luyten.icns \
   --java-options '-XX:+UnlockExperimentalVMOptions --enable-preview -Xdock:name=Luyten -XX:+UseG1GC -Xms200M -Xmx200M' \
   --jlink-options '--strip-native-commands --strip-debug --no-man-pages --no-header-files'
 
+
+mv Luyten-${VERSION}.dmg Luyten-${V}-${ARCH}.dmg
 
 # https://docs.oracle.com/en/java/javase/21/jpackage/packaging-overview.html
 
