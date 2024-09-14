@@ -4,6 +4,9 @@ on:
   push:
     tags:
       - v1.*
+    paths-ignore:
+      - '.gitignore'
+      - 'README.md'
 jobs:
   build:
     runs-on: macos-latest

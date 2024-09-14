@@ -1,7 +1,7 @@
 export VERSION="1.0.0"
 export DIST_VERSION="1.0.0"
 #export JAVA_HOME=/Library/Java/JavaVirtualMachines/liberica-21.jdk
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-21.jdk/Contents/Home
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-24.jdk/Contents/Home
 
 export PATH=${JAVA_HOME}/bin:$PATH
 
@@ -23,8 +23,8 @@ ${JAVA_HOME}/bin/jpackage --verbose --input ./dist \
   --app-version ${DIST_VERSION} \
   --icon luyten.icns \
   --java-options '-XX:+UnlockExperimentalVMOptions --enable-preview -Xdock:name=Luyten -XX:+UseG1GC -Xms200M -Xmx200M' \
-  --jlink-options '--strip-native-commands --strip-debug --no-man-pages --no-header-files'
-
+  --jlink-options '--strip-native-commands --strip-debug --no-man-pages --no-header-files' \
+  --add-modules java.desktop,java.prefs,java.logging
 
 # https://docs.oracle.com/en/java/javase/21/jpackage/packaging-overview.html
 

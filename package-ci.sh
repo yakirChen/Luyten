@@ -19,7 +19,8 @@ jpackage --verbose --input ./dist \
   --app-version ${VERSION} \
   --icon luyten.icns \
   --java-options '-XX:+UnlockExperimentalVMOptions --enable-preview -Xdock:name=Luyten -XX:+UseG1GC -Xms200M -Xmx200M' \
-  --jlink-options '--strip-native-commands --strip-debug --no-man-pages --no-header-files'
+  --jlink-options '--strip-native-commands --strip-debug --no-man-pages --no-header-files' \
+  --add-modules java.desktop,java.prefs,java.logging
 
 
 mv Luyten-${VERSION}.dmg Luyten-${V}-${ARCH}.dmg
